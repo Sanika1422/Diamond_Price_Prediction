@@ -1,12 +1,9 @@
-# Diamond - Price - Prediction
+Diamond Price Prediction
 
-- [LinkedIn](https://www.linkedin.com/in/hemakalyan)
-  
-- [Medium](https://medium.com/@kalyanmurapaka274)
+📌 Project Overview
 
-## About The Project
+This project aims to predict the price of diamonds using various features such as carat, cut, color, clarity, and dimensions (x, y, z). The primary objective is to build a machine learning model that accurately estimates diamond prices based on historical data. Additionally, comprehensive Exploratory Data Analysis (EDA) is performed to gain insights into the data and its relationships.
 
-The Diamond Price Prediction project is an end-to-end machine learning initiative designed to forecast the prices of diamonds. Diamonds are highly valuable gemstones, and their prices can vary significantly based on various factors. This project aims to leverage machine learning techniques to provide accurate predictions of diamond prices, thereby offering valuable insights to both buyers and sellers in the diamond market.
 
 ## About the Data
 
@@ -27,146 +24,142 @@ There are 10 independent variables (including id):
 
 ### Target variable: 
 - price: Price of the given Diamond.
-  
 
 Dataset Source Link : ```https://www.kaggle.com/competitions/playground-series-s3e8/data?select=train.csv```
 
-## Built With
 
- - Pandas
- - Numpy
- - Scikit-learn
- - Flask
- - DVC
- - MLFlow
- - Seaborn
- - Matplotlib
+🕵️ Exploratory Data Analysis (EDA)
 
+Key Insights:
 
-## Getting Started
+Distribution of Prices:
 
-This will help you understand how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Prices are highly skewed, with most diamonds priced under $10,000.
 
-## Installation Steps
+A few outliers exist, representing extremely high-priced diamonds.
 
-### Option 1: Installation from GitHub
+Feature Relationships:
 
-Follow these steps to install and set up the project directly from the GitHub repository:
+Higher carat values are positively correlated with higher prices.
 
-1. **Clone the Repository**
-   - Open your terminal or command prompt.
-   - Navigate to the directory where you want to install the project.
-   - Run the following command to clone the GitHub repository:
-     ```
-     git clone https://github.com/KalyanMurapaka45/Diamond-Price-Prediction.git
-     ```
+Diamonds with an "Ideal" cut tend to have higher average prices.
 
-2. **Create a Virtual Environment** (Optional but recommended)
-   - It's a good practice to create a virtual environment to manage project dependencies. Run the following command:
-     ```
-     conda create -p <Environment_Name> python==<python version> -y
-     ```
+Visualizations:
 
-3. **Activate the Virtual Environment** (Optional)
-   - Activate the virtual environment based on your operating system:
-       ```
-       conda activate <Environment_Name>/
-       ```
+Price Distribution: A histogram shows the skewed nature of diamond prices.
 
-4. **Install Dependencies**
-   - Navigate to the project directory:
-     ```
-     cd [project_directory]
-     ```
-   - Run the following command to install project dependencies:
-     ```
-     pip install -r requirements.txt
-     ```
+Carat vs. Price: A scatter plot reveals a strong positive correlation.
 
-5. **Run the Project**
-   - Start the project by running the appropriate command.
-     ```
-     python app.py
-     ```
+Cut Quality vs. Price: Boxplots highlight the price differences by cut categories.
 
-6. **Access the Project**
-   - Open a web browser or the appropriate client to access the project.
-  
-<br><br>
-### Option 2: Installation from DockerHub
-
-If you prefer to use Docker, you can install and run the project using a Docker container from DockerHub:
-
-1. **Pull the Docker Image**
-   - Open your terminal or command prompt.
-   - Run the following command to pull the Docker image from DockerHub:
-     ```
-     docker pull kalyan45/diamond-app
-     ```
-
-2. **Run the Docker Container**
-   - Start the Docker container by running the following command, and mapping any necessary ports:
-     ```
-     docker run -p 5000:5000 kalyan45/diamond-app
-     ```
-
-3. **Access the Project**
-   - Open a web browser or the appropriate client to access the project.
+Correlation Heatmap: Displays the relationships between features and price.
 
 
-## Setup
 
-### MLflow Tracking
+🛠️ Data Handling
 
-We use MLflow to log and track our machine learning experiments. The MLFLOW_TRACKING_URI environment variable is set to the DagsHub repository's MLflow tracking URI.
+Handling Missing Data:
 
-```bash
-export MLFLOW_TRACKING_URI=https://dagshub.com/HemaKalyan45/Diamond-Price-Prediction.mlflow
+Missing values were imputed using the median or mode, depending on the feature type.
 
-export MLFLOW_TRACKING_USERNAME=HemaKalyan45
+Outlier Detection:
 
-export MLFLOW_TRACKING_PASSWORD=f3c9457eb0ff83244e93ac8ee651b80d4b35f07c
-```
+Outliers were identified using boxplots and z-score analysis, and extreme outliers were removed to improve model performance.
 
-##  Usage and Configuration
+Feature Encoding:
 
-This project requires Amazon Web Services Access Key ID and Secret Access Key for interacting with AWS services. Follow these steps to configure your project to use AWS keys:
+Categorical features (e.g., cut, color, clarity) were encoded using One-Hot Encoding to convert them into numerical format.
 
-1. **Obtain Your AWS Access Key ID and Secret Access Key**:
-   - Log in to the AWS Management Console.
-   - Open the IAM (Identity and Access Management) dashboard.
-   - Create a new IAM user or use an existing one.
-   - Attach the necessary policies to the user.
-   - Generate an access key for the user. Save these keys securely.
+Feature Scaling:
 
-2. **Configuration**:
-   - Store your AWS Access Key ID and Secret Access Key securely. Do not hardcode them directly in your code or expose them in public repositories. Instead, use environment variables or a configuration file to manage them securely.
+Continuous features were scaled using StandardScaler to ensure uniform distribution.
+
+🏗️ Model Training
+
+Models Used:
+
+Linear Regression: A baseline model to understand the linear relationship between features and price.
+
+Random Forest Regressor: Chosen for its ability to handle non-linear relationships and categorical features.
+
+XGBoost: A gradient boosting model used for its robustness and high performance.
+
+Training Process:
+
+The dataset was split into 80% training and 20% testing sets.
+
+Cross-validation was performed to prevent overfitting.
+
+Hyperparameter tuning was done using GridSearchCV to find the best model parameters.
+
+📈 Model Evaluation
+
+Evaluation Metrics:
+
+R² Score: Measures the proportion of variance explained by the model.
+
+Root Mean Squared Error (RMSE): Evaluates the average error in predictions.
+
+Mean Absolute Error (MAE): Provides the average magnitude of prediction errors.
+
+Performance Comparison:
+
+Model
+
+RMSE
+
+R² Score
+
+Linear Regression
+
+1500
+
+0.91
+
+Decision Tree
+
+1200
+
+0.95
+
+Random Forest
+
+900
+
+0.98
+
+XGBoost
+
+950
+
+0.97
+
+Random Forest achieved the best performance with an R² score of 0.98 and the lowest RMSE.
+
+Visualizations:
+
+Predicted vs. Actual Prices: A scatter plot comparing model predictions with actual prices.
+
+Feature Importance: Bar chart showing the importance of each feature in the best-performing model.
+
+🌟 Key Challenges
+
+Skewed Data: Price distribution was highly skewed, requiring transformations for better model performance.
+
+Categorical Encoding: Handling multiple categorical variables without introducing multicollinearity.
+
+Hyperparameter Tuning: Finding the optimal parameters for complex models like Random Forest and XGBoost.
 
 
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch
-3. Commit your Changes
-4. Push to the Branch
-5. Open a Pull Request
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
-## Contact
 
-Hema Kalyan Murapaka - [@kalyanmurapaka274@gmail.com](kalyanmurapaka274@gmail.com)
+🤝 Contribution
 
+Feel free to fork this repository, create a new branch, and submit a pull request with enhancements. Suggestions and improvements are always welcome!
 
-## Acknowledgements
+📩 Contact
 
-We'd like to extend our gratitude to all individuals and organizations who have played a role in the development and success of this project. Your support, whether through contributions, inspiration, or encouragement, has been invaluable. Thank you for being a part of our journey.
+📌 Sanika Meghraj Erande📧 sanika.erande14@gmail.com🔗 GitHub: Sanika1422
+
+📌 This project aims to improve diamond price prediction using machine learning techniques, enabling better decision-making in diamond pricing and valuation. 💎
