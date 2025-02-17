@@ -1,165 +1,132 @@
-Diamond Price Prediction
+# 💎 Diamond Price Prediction
 
-📌 Project Overview
+## 📌 Project Overview
 
-This project aims to predict the price of diamonds using various features such as carat, cut, color, clarity, and dimensions (x, y, z). The primary objective is to build a machine learning model that accurately estimates diamond prices based on historical data. Additionally, comprehensive Exploratory Data Analysis (EDA) is performed to gain insights into the data and its relationships.
+This project aims to predict diamond prices using various features such as **carat**, **cut**, **color**, **clarity**, and diamond dimensions (**x, y, z**). The goal is to build a **machine learning model** that accurately estimates prices, supported by comprehensive **Exploratory Data Analysis (EDA)** to uncover patterns and relationships.
 
+---
 
-## About the Data
+## 📊 About the Data
 
-The dataset The goal is to predict the price of a given diamond (Regression Analysis).
+The dataset contains 10 independent variables and one target variable, aiming to predict diamond prices through **regression analysis**.
 
-There are 10 independent variables (including id):
+### 🔍 Independent Variables:
 
- - id: the unique identifier of each diamond
- - carat: Carat (ct.) refers to the unique unit of weight measurement used exclusively to weigh gemstones and diamonds.
- - cut: Quality of Diamond Cut
- - color: Color of Diamond
- - clarity: Diamond clarity is a measure of the purity and rarity of the stone, graded by the visibility of these characteristics under 10-power magnification.
- - depth: The depth of the diamond is its height (in millimetres) measured from the culet (bottom tip) to the table (flat, top surface)
- - table: A diamond's table is the facet which can be seen when the stone is viewed face up.
- - x : Diamond X dimension
- - y: Diamond Y dimension
- - z: Diamond Z dimension
+- **id**: Unique identifier for each diamond.
+- **carat**: Unit of weight for gemstones and diamonds.
+- **cut**: Quality of the diamond cut.
+- **color**: Diamond color grade.
+- **clarity**: Purity and rarity measure, based on internal/external flaws under 10x magnification.
+- **depth**: Height of the diamond (culet to table), expressed as a percentage.
+- **table**: Width of the diamond’s top flat facet when viewed face up.
+- **x**: Length of the diamond (in millimeters).
+- **y**: Width of the diamond (in millimeters).
+- **z**: Height of the diamond (in millimeters).
 
-### Target variable: 
-- price: Price of the given Diamond.
+### 🎯 Target Variable:
 
-Dataset Source Link : ```https://www.kaggle.com/competitions/playground-series-s3e8/data?select=train.csv```
+- **price**: The price of the given diamond, which the model aims to predict.
 
+### 📥 Dataset Source:
+[Kaggle Playground Series S3E8](https://www.kaggle.com/competitions/playground-series-s3e8/data?select=train.csv)
 
-🕵️ Exploratory Data Analysis (EDA)
+---
 
-Key Insights:
+## 🕵️ Exploratory Data Analysis (EDA)
 
-Distribution of Prices:
+### Key Insights:
 
-Prices are highly skewed, with most diamonds priced under $10,000.
+1. **Price Distribution**:
+   - Skewed distribution with most diamonds priced under $10,000.
+   - A few high-priced outliers.
 
-A few outliers exist, representing extremely high-priced diamonds.
+2. **Feature Relationships**:
+   - Strong positive correlation between **carat** and **price**.
+   - Diamonds with "Ideal" cuts generally have higher prices.
 
-Feature Relationships:
+### 🔍 Visual Insights:
 
-Higher carat values are positively correlated with higher prices.
+1. **Price Distribution**: Histogram showing skewed price distribution.
+2. **Carat vs. Price**: Scatter plot revealing a strong positive correlation.
+3. **Cut Quality vs. Price**: Boxplots highlighting price differences by cut categories.
+4. **Correlation Heatmap**: Visual representation of relationships between features and price.
 
-Diamonds with an "Ideal" cut tend to have higher average prices.
+---
 
-Visualizations:
+## 🛠️ Data Handling
 
-Price Distribution: A histogram shows the skewed nature of diamond prices.
+### 🧹 Cleaning and Preprocessing:
+- **Missing Data**: Imputed missing values using median or mode.
+- **Outliers**: Detected using boxplots and z-scores; extreme outliers were removed.
 
-Carat vs. Price: A scatter plot reveals a strong positive correlation.
+### 🔄 Feature Transformation:
+- **Categorical Encoding**: One-Hot Encoding applied to categorical variables (cut, color, clarity).
+- **Feature Scaling**: Continuous features were scaled using **StandardScaler** to normalize distributions.
 
-Cut Quality vs. Price: Boxplots highlight the price differences by cut categories.
+---
 
-Correlation Heatmap: Displays the relationships between features and price.
+## 🏗️ Model Training
 
+### ⚙️ Models Used:
 
+1. **Linear Regression**: Baseline model for understanding linear relationships.
+2. **Random Forest Regressor**: Handles non-linear relationships effectively.
+3. **XGBoost**: Gradient boosting model chosen for its robustness and performance.
 
-🛠️ Data Handling
+### 🔍 Training Process:
+- **Train-Test Split**: 80% training, 20% testing.
+- **Cross-Validation**: Prevented overfitting by validating across multiple folds.
+- **Hyperparameter Tuning**: Used **GridSearchCV** to optimize model parameters.
 
-Handling Missing Data:
+---
 
-Missing values were imputed using the median or mode, depending on the feature type.
+## 📈 Model Evaluation
 
-Outlier Detection:
+### 📊 Evaluation Metrics:
 
-Outliers were identified using boxplots and z-score analysis, and extreme outliers were removed to improve model performance.
+- **R² Score**: Measures the proportion of variance explained by the model.
+- **Root Mean Squared Error (RMSE)**: Evaluates the average prediction error.
+- **Mean Absolute Error (MAE)**: Provides the average magnitude of errors.
 
-Feature Encoding:
+### 📌 Performance Comparison:
 
-Categorical features (e.g., cut, color, clarity) were encoded using One-Hot Encoding to convert them into numerical format.
+| Model             | RMSE    | R² Score |
+| ----------------- | ------- | -------- |
+| Linear Regression | 1500    | 0.91     |
+| Decision Tree     | 1200    | 0.95     |
+| Random Forest     | **900** | **0.98** |
+| XGBoost           | 950     | 0.97     |
 
-Feature Scaling:
+- **Random Forest** achieved the best performance, with an R² score of **0.98** and the lowest RMSE.
 
-Continuous features were scaled using StandardScaler to ensure uniform distribution.
+### 🔍 Visual Comparisons:
 
-🏗️ Model Training
+1. **Predicted vs. Actual Prices**: Scatter plot comparing model predictions to actual prices.
+2. **Feature Importance**: Bar chart showing the importance of each feature in the best-performing model.
 
-Models Used:
+---
 
-Linear Regression: A baseline model to understand the linear relationship between features and price.
+## 🌟 Key Challenges and Solutions
 
-Random Forest Regressor: Chosen for its ability to handle non-linear relationships and categorical features.
+1. **Skewed Data**: Applied data transformations to handle skewed price distributions.
+2. **Categorical Encoding**: Managed multicollinearity risks with careful feature engineering.
+3. **Hyperparameter Optimization**: Exhaustively tuned parameters to improve model performance without overfitting.
 
-XGBoost: A gradient boosting model used for its robustness and high performance.
+---
 
-Training Process:
+## 🤝 Contribution
 
-The dataset was split into 80% training and 20% testing sets.
+Feel free to **fork** this repository, create a new branch, and submit a pull request with enhancements. Suggestions and improvements are always welcome!
 
-Cross-validation was performed to prevent overfitting.
+---
 
-Hyperparameter tuning was done using GridSearchCV to find the best model parameters.
+## 📩 Contact
 
-📈 Model Evaluation
+📌 **Sanika Meghraj Erande**  
+📧 [sanika.erande14@gmail.com](mailto:sanika.erande14@gmail.com)  
+🔗 **GitHub:** [Sanika1422](https://github.com/Sanika1422)
 
-Evaluation Metrics:
+---
 
-R² Score: Measures the proportion of variance explained by the model.
+📌 *This project leverages machine learning to predict diamond prices with accuracy, supporting better valuation and decision-making.* 💎
 
-Root Mean Squared Error (RMSE): Evaluates the average error in predictions.
-
-Mean Absolute Error (MAE): Provides the average magnitude of prediction errors.
-
-Performance Comparison:
-
-Model
-
-RMSE
-
-R² Score
-
-Linear Regression
-
-1500
-
-0.91
-
-Decision Tree
-
-1200
-
-0.95
-
-Random Forest
-
-900
-
-0.98
-
-XGBoost
-
-950
-
-0.97
-
-Random Forest achieved the best performance with an R² score of 0.98 and the lowest RMSE.
-
-Visualizations:
-
-Predicted vs. Actual Prices: A scatter plot comparing model predictions with actual prices.
-
-Feature Importance: Bar chart showing the importance of each feature in the best-performing model.
-
-🌟 Key Challenges
-
-Skewed Data: Price distribution was highly skewed, requiring transformations for better model performance.
-
-Categorical Encoding: Handling multiple categorical variables without introducing multicollinearity.
-
-Hyperparameter Tuning: Finding the optimal parameters for complex models like Random Forest and XGBoost.
-
-
-
-
-
-🤝 Contribution
-
-Feel free to fork this repository, create a new branch, and submit a pull request with enhancements. Suggestions and improvements are always welcome!
-
-📩 Contact
-
-📌 Sanika Meghraj Erande📧 sanika.erande14@gmail.com🔗 GitHub: Sanika1422
-
-📌 This project aims to improve diamond price prediction using machine learning techniques, enabling better decision-making in diamond pricing and valuation. 💎
