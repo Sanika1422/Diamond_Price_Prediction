@@ -114,12 +114,7 @@ The dataset contains 10 independent variables and one target variable, aiming to
 
 - **Random Forest** achieved the best performance, with an R² score of **0.98** and the lowest RMSE.
 
-### 🔍 Visual Comparisons:
 
-1. **Predicted vs. Actual Prices**: Scatter plot comparing model predictions to actual prices.
-2. **Feature Importance**: Bar chart showing the importance of each feature in the best-performing model.
-
----
 
 ## 🌟 Key Challenges and Solutions
 
