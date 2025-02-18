@@ -47,9 +47,24 @@ The dataset contains 10 independent variables and one target variable, aiming to
 ### 🔍 Visual Insights:
 
 1. **Price Distribution**: Histogram showing skewed price distribution.
+![alt text](price_distribution.png)
+
 2. **Carat vs. Price**: Scatter plot revealing a strong positive correlation.
+![alt text](carat_vs_price.png)
+
 3. **Cut Quality vs. Price**: Boxplots highlighting price differences by cut categories.
+![alt text](cut_quality_vs_price.png)
+
 4. **Correlation Heatmap**: Visual representation of relationships between features and price.
+![alt text](correlation_heatmap.png)
+
+![alt text](histogram_carat.png) 
+![alt text](histogram_depth.png) 
+![alt text](histogram_price.png) 
+![alt text](histogram_table.png) 
+![alt text](histogram_x.png)
+ ![alt text](histogram_y.png)
+  ![alt text](histogram_z.png)
 
 ---
 
